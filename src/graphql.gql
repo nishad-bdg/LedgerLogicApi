@@ -2,6 +2,25 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreateCustomerInput {
+  creditLimit: Float!
+  customerName: String!
+  email: String!
+  isBlocked: Boolean!
+  mobileNo: Float!
+}
+
+type Customer {
+  createdAt: DateTime!
+  creditLimit: Float!
+  customerName: String!
+  email: String!
+  id: Int!
+  isBlocked: Boolean!
+  mobileNo: Int!
+  updatedAt: DateTime!
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
@@ -18,10 +37,13 @@ type LogoutResponse {
 }
 
 type Mutation {
+  createCustomer(customerInput: CreateCustomerInput!): Customer!
+  deleteCustomer(id: Int!): String!
   getNewTokens: NewTokensResponse!
   logout(id: Int!): LogoutResponse!
   signin(signininput: SigninInput!): LoginResponse!
   signup(signupInput: SignUpInput!): LoginResponse!
+  updateCustomer(customerInput: UpdateCustomerInput!): Customer!
 }
 
 type NewTokensResponse {
@@ -30,6 +52,8 @@ type NewTokensResponse {
 }
 
 type Query {
+  customer: [Customer!]!
+  findOneCustomer(id: Int!): Customer!
   hello: String!
   user(email: String!): User!
 }
@@ -43,6 +67,15 @@ input SignUpInput {
 input SigninInput {
   email: String!
   password: String!
+}
+
+input UpdateCustomerInput {
+  creditLimit: Float
+  customerName: String
+  email: String
+  id: Int!
+  isBlocked: Boolean
+  mobileNo: Float
 }
 
 type User {
