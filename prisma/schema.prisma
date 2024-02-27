@@ -44,10 +44,10 @@ model ProjectItem {
 model Customer {
   id           Int           @id @default(autoincrement())
   customerName String
-  mobile       Int           @unique
+  mobileNo     Int           @unique
   email        String?       @unique
-  creditLimit  Decimal
-  isBlocked    Boolean
+  creditLimit  Decimal?      @default(0)
+  isBlocked    Boolean?      @default(false)
   transactions Transaction[]
   payments     Payment[]
   createdAt    DateTime      @default(now())
